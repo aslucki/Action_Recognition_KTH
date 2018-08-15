@@ -1,6 +1,8 @@
-# KTH
+# Overview
 
+Experiment with two approaches to representing sequence of images for action recognition. In the first approach we use Motion History Images 
 Toy example for action classification using KTH dataset.
+
 # Data
 Dataset downloaded from:
 http://www.nada.kth.se/cvap/actions/
