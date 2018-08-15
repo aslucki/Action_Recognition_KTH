@@ -10,7 +10,7 @@ Toy example for action classification using KTH dataset.
 
 ### Training setting
 LR - 0.0001 \
-Optimizer - rmpsprop \
+Optimizer - rmsprop \
 Epochs - 100 \
 Droput - 0.7
 
