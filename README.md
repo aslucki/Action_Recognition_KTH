@@ -9,10 +9,10 @@ Toy example for action classification using KTH dataset.
 ### Architecture
 
 ### Training setting
-LR - 0.0001 ..
-Optimizer - rmpsprop ..
-Epochs - 100 ..
-Droput - 0.7 ..
+LR - 0.0001 \
+Optimizer - rmpsprop \
+Epochs - 100 \
+Droput - 0.7 \
 
 # Results
 All results were obtained using cross validation with 5 folds.
