@@ -3,6 +3,7 @@
 Toy example for action classification using KTH dataset.
 
 # Results
+All results were obtained using cross validation with 5 folds.
 
 | Model                  | Mean accuracy | STD  |
 |------------------------|---------------|------|
