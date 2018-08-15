@@ -49,7 +49,7 @@ if __name__ == '__main__':
             video = pims.PyAVReaderIndexed(file_path)
             selected_frames = video[:MAX_FRAME_NUM:FRAMES_INTERVAL]
 
-            sequential_features = np.zeros(shape=(6, 4096))
+            sequential_features = np.zeros(shape=(n_timesteps, 4096))
             for i, frame in enumerate(selected_frames):
                 processed = process_frame(frame)
 
