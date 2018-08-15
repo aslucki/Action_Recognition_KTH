@@ -1,7 +1,23 @@
 # KTH
 
 Toy example for action classification using KTH dataset.
+# Data
+Dataset downloaded from:
+http://www.nada.kth.se/cvap/actions/
 
+All sequences are stored using AVI file format and are available on-line (DIVX-compressed version). Uncompressed version is available on demand. There are 25x6x4=600 video files (however, one is broken) for each combination of 25 subjects, 6 actions and 4 scenarios. 
+Available actions are:
+
+1. walking
+2. jogging
+3. running
+4. boxing
+5. handwaving
+6. handclapping
+
+For details refer to:
+"Recognizing Human Actions: A Local SVM Approach",
+Christian Schuldt, Ivan Laptev and Barbara Caputo; in Proc. ICPR'04, Cambridge, UK.
 # Models
 ## SVM
 
@@ -21,4 +37,4 @@ All results were obtained using cross validation with 5 folds.
 |------------------------|---------------|------|
 | SVM on Zernike moments | 0.66          | 0.05 |
 | SVM on HOG features    | 0.70          | 0.07 |
-| LSTM on 6 frames       | 0.72          | 0.02 |
+| LSTM using 6 RGB frames| 0.72          | 0.02 |
