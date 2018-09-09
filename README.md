@@ -39,4 +39,4 @@ All results were obtained using cross validation with 5 folds.
 |------------------------|---------------|------|
 | SVM on Zernike moments | 0.66          | 0.05 |
 | SVM on HOG features    | 0.70          | 0.07 |
-| LSTM 10 frames         | 0.80          | 0.04 |
+| LSTM 10 frames         | 0.78          | 0.02 |
