@@ -30,7 +30,7 @@ Christian Schuldt, Ivan Laptev and Barbara Caputo; in Proc. ICPR'04, Cambridge, 
 LR - 0.0001 \
 Optimizer - rmsprop \
 Epochs - 100 \
-Droput - 0.7
+Droput - 0.5
 
 # Results
 All results were obtained using cross validation with 5 folds.
@@ -39,4 +39,4 @@ All results were obtained using cross validation with 5 folds.
 |------------------------|---------------|------|
 | SVM on Zernike moments | 0.66          | 0.05 |
 | SVM on HOG features    | 0.70          | 0.07 |
-| LSTM using 6 RGB frames| 0.72          | 0.02 |
+| LSTM 10 frames         | 0.80          | 0.04 |
