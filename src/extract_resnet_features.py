@@ -1,10 +1,11 @@
 import pims
 import numpy as np
-from tensorflow.keras.applications.vgg16 import preprocess_input, VGG16
+from tensorflow.keras.applications.resnet50 import preprocess_input, ResNet50
 from tensorflow.keras import Model
 import cv2
 import os
 import h5py
+import argparse
 
 def process_frame(frame):
     resized_frame = cv2.resize(frame, (224, 224))
@@ -27,18 +28,16 @@ if __name__ == '__main__':
             help="Path to save HDF5 file.")
     args = vars(ap.parse_args())
 
-    MAX_FRAME_NUM = 150
+    MAX_FRAME_NUM = 250
     FRAMES_INTERVAL = 25
 
-    base_model = VGG16(weights='imagenet')
-    model = Model(inputs=base_model.input,
-                  outputs=base_model.get_layer('fc1').output)
+    model = ResNet50(weights='imagenet', include_top=False)
     
     input_dir = args['input_dir']
     n_samples = count_files(input_dir)
     n_timesteps = int(MAX_FRAME_NUM / FRAMES_INTERVAL)
 
-    features = np.zeros(shape=(n_samples, n_timesteps, 4096))
+    features = np.zeros(shape=(n_samples, n_timesteps, 2048))
     
     labels = []
     ind = 0
@@ -49,7 +48,7 @@ if __name__ == '__main__':
             video = pims.PyAVReaderIndexed(file_path)
             selected_frames = video[:MAX_FRAME_NUM:FRAMES_INTERVAL]
 
-            sequential_features = np.zeros(shape=(n_timesteps, 4096))
+            sequential_features = np.zeros(shape=(n_timesteps, 2048))
             for i, frame in enumerate(selected_frames):
                 processed = process_frame(frame)
 
@@ -62,5 +61,5 @@ if __name__ == '__main__':
 
     output_file = h5py.File(args['output_file'], 'w')
     output_file.create_dataset('labels', data=np.array(labels, dtype='S'))
-    output_file.create_dataset('vgg16', data=features)
+    output_file.create_dataset('resnet50', data=features)
     output_file.close()

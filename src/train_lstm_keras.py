@@ -4,6 +4,7 @@ from tensorflow.keras import Model
 from tensorflow.keras.layers import Dense, LSTM, Input, Dropout
 from tensorflow.keras.utils import to_categorical
 from sklearn.model_selection import KFold
+import argparse
 
 def lstm_model(input_shape, n_classes=6):
     """
@@ -21,6 +22,7 @@ def lstm_model(input_shape, n_classes=6):
               metrics=['accuracy'])
 
     return model
+
 
 def labels_to_one_hot(labels):
     """
@@ -49,12 +51,12 @@ def one_hot_to_label(one_hot, labels):
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument("--input_file", required=True,
-            help="Path to a file with vgg16 data.")
+            help="Path to a file with resnet data.")
     args = vars(ap.parse_args())
 
     data = h5py.File(args['input_file'], 'r')
     labels = labels_to_one_hot(data['labels'][:])
-    features = data['vgg16'][:]
+    features = data['resnet50'][:]
     data.close()
 
     scores = []
@@ -64,7 +66,7 @@ if __name__ == '__main__':
         train_x, train_y = features[train_index], labels[train_index]
         test_x, test_y = features[test_index], labels[test_index]
         
-        model = lstm_model(input_shape=(6,4096))
+        model = lstm_model(input_shape=(10,2048))
         model.optimizer.lr = 0.0001
         model.fit(train_x, train_y, epochs=100)
         

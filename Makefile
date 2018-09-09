@@ -14,4 +14,10 @@ extract_shallow:
 	python3 src/extract_shallow_features.py \
 			--input_dir data/processed/MHI \
 			--output_file data/processed/shallow_features.h5
-
+extract_deep:
+	python3 src/extract_resnet_features.py \
+			--input_dir data/source \
+			--output_file data/processed/resnet_features.h5
+train_basic_lstm:
+	python3 src/train_lstm_keras.py \
+			--input_file data/processed/resnet_features.h5
