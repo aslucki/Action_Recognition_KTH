@@ -3,7 +3,7 @@ import numpy as np
 import os
 import argparse
 
-def create_mhi(video_file_path):
+def create_mhi(video_file_path, max_frames=250):
     """
     Converts a video to a single 
     grayscale image representing
@@ -20,7 +20,7 @@ def create_mhi(video_file_path):
     timestamp = 0
     while True:
         ret, frame = video.read()
-        if not ret:
+        if not ret or timestamp > max_frames:
             break
         fgmask = fgbg.apply(frame)
         cv2.motempl.updateMotionHistory(
@@ -41,13 +41,15 @@ if __name__ == '__main__':
             help="Path to save motion history images")
     args = vars(ap.parse_args())
 
+    MAX_FRAMES_NUM = 250
+
     input_dir = args['input_dir']
     output_dir = args['output_dir']
     for subdir in os.listdir(input_dir):
         for ind, file_name in enumerate(
                 os.listdir(os.path.join(input_dir, subdir))):
             file_path = os.path.join(input_dir, subdir, file_name)
-            mhi = create_mhi(file_path)
+            mhi = create_mhi(file_path, max_frames=250)
             
             output_file = '{}_{}.jpg'.format(subdir, ind)
             save_path = os.path.join(output_dir, output_file)
