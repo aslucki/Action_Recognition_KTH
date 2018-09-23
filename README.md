@@ -110,6 +110,8 @@ All results were obtained using cross validation with 5 folds.
 | SVM on HOG features    | 0.684         | 0.060|
 | LSTM on 10 frames      | 0.759         | 0.018|
 | LSTM on 10 shuffled frames | 0.664         | 0.038|
-| CONV on optical flows      | 0.527         |0.05|
-|Linear model on resnet features      | 0.721         |0.021|
-|SVM on output from CONV on optical flows and linear model on resnet      | 0.721         |0.022|
+| CONV on optical flows [Zisserman]      | 0.527         |0.05|
+|Linear model on resnet features [Zisserman]    | 0.721         |0.021|
+|SVM on output from CONV on optical flows and linear model on resnet  [Zisserman]   | 0.721         |0.022|
+
+[Zisserman]: https://arxiv.org/pdf/1406.2199.pdf
