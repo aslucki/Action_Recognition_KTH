@@ -27,6 +27,11 @@ extract_autoencoder_features:
 			--input_file data/processed/resnet_features.h5 \
 			--output_file data/processed/autoencoder_features.h5
 
+calculate_optical_flow:
+	python3 src/calculate_optical_flow.py \
+			--input_dir data/source \
+			--output_file data/processed/optical_flow_features.h5
+
 train_svc_autoencoder:
 	python3 src/train_svc_scikit.py \
 			--input_file data/processed/autoencoder_features.h5 \
