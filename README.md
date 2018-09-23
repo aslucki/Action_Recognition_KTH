@@ -54,42 +54,42 @@ Trained with an early stopping callback (training stops when accuracy haven't im
 
 ## Convolutional network
 ### Architecture
-    Layer (type)                 Output Shape              Param #   
+      Layer (type)                 Output Shape              Param #   
     =================================================================
-    input (InputLayer)           (None, 120, 160, 18)      0         
+    input (InputLayer)           (None, 120, 160, 20)      0         
     _________________________________________________________________
-    conv2d_58 (Conv2D)           (None, 57, 77, 96)        84768     
+    conv_1 (Conv2D)              (None, 57, 77, 96)        94176     
     _________________________________________________________________
-    batch_normalization_24 (Batc (None, 57, 77, 96)        384       
+    conv_1_norm (BatchNormalizat (None, 57, 77, 96)        384       
     _________________________________________________________________
-    max_pooling2d_22 (MaxPooling (None, 28, 38, 96)        0         
+    conv_1_pool (MaxPooling2D)   (None, 28, 38, 96)        0         
     _________________________________________________________________
-    conv2d_59 (Conv2D)           (None, 12, 17, 256)       614656    
+    conv_2 (Conv2D)              (None, 12, 17, 256)       614656    
     _________________________________________________________________
-    batch_normalization_25 (Batc (None, 12, 17, 256)       1024      
+    conv_2_norm (BatchNormalizat (None, 12, 17, 256)       1024      
     _________________________________________________________________
-    conv2d_60 (Conv2D)           (None, 10, 15, 512)       1180160   
+    conv_3 (Conv2D)              (None, 10, 15, 512)       1180160   
     _________________________________________________________________
-    conv2d_61 (Conv2D)           (None, 8, 13, 512)        2359808   
+    conv_4 (Conv2D)              (None, 8, 13, 512)        2359808   
     _________________________________________________________________
-    conv2d_62 (Conv2D)           (None, 6, 11, 512)        2359808   
+    conv_5 (Conv2D)              (None, 6, 11, 512)        2359808   
     _________________________________________________________________
-    max_pooling2d_23 (MaxPooling (None, 3, 5, 512)         0         
+    conv_5_pool (MaxPooling2D)   (None, 3, 5, 512)         0         
     _________________________________________________________________
-    flatten_4 (Flatten)          (None, 7680)              0         
+    flatten (Flatten)            (None, 7680)              0         
     _________________________________________________________________
-    dense_15 (Dense)             (None, 4096)              31461376  
+    full_6 (Dense)               (None, 4096)              31461376  
     _________________________________________________________________
-    dropout_10 (Dropout)         (None, 4096)              0         
+    full_6_dropout (Dropout)     (None, 4096)              0         
     _________________________________________________________________
-    dense_16 (Dense)             (None, 2048)              8390656   
+    full_7 (Dense)               (None, 2048)              8390656   
     _________________________________________________________________
-    dropout_11 (Dropout)         (None, 2048)              0         
+    full_7_dropout (Dropout)     (None, 2048)              0         
     _________________________________________________________________
-    dense_17 (Dense)             (None, 6)                 12294     
+    softmax (Dense)              (None, 6)                 12294     
     =================================================================
-    Total params: 46,464,934
-    Trainable params: 46,464,230
+    Total params: 46,474,342
+    Trainable params: 46,473,638
     Non-trainable params: 704
     
 ### Training setting
