@@ -49,10 +49,26 @@ def one_hot_to_label(one_hot, labels):
     return sorted(unique_labels)[ind]
 
 
+def disarrange(a, axis=-1):
+    """
+    Shuffle `a` in-place along the given axis.
+
+    Apply numpy.random.shuffle to the given axis of `a`.
+    Each one-dimensional slice is shuffled independently.
+    """
+    b = a.swapaxes(axis, -1)
+    # Shuffle `b` in-place along the last axis.  `b` is a view of `a`,
+    # so `a` is shuffled in place, too.
+    shp = b.shape[:-1]
+    for ndx in np.ndindex(shp):
+        np.random.shuffle(b[ndx])
+    return a
+
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument("--input_file", required=True,
             help="Path to a file with resnet data.")
+    ap.add_argument('--disarrange', action='store_true')
     args = vars(ap.parse_args())
 
     np.random.seed(42)
@@ -67,7 +83,12 @@ if __name__ == '__main__':
     kf = KFold(n_splits=5, shuffle=True)
     
     for train_index, test_index in kf.split(labels):
-        train_x, train_y = features[train_index], labels[train_index]
+
+        if args['disarrange']:
+            print('Disarranging enabled')
+            train_x, train_y = disarrange(features[train_index]), labels[train_index]
+        else:
+            train_x, train_y = features[train_index], labels[train_index]
         test_x, test_y = features[test_index], labels[test_index]
         
         model = lstm_model(input_shape=(10,2048))

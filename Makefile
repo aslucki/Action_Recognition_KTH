@@ -51,3 +51,8 @@ train_basic_lstm:
 	python3 src/train_lstm_keras.py \
 			--input_file data/processed/resnet_features.h5
 
+train_basic_lstm_disarranged:
+	python3 src/train_lstm_keras.py \
+			--input_file data/processed/resnet_features.h5 \
+			--disarrange
+
