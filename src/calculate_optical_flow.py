@@ -36,12 +36,10 @@ if __name__ == '__main__':
     args = vars(ap.parse_args())
 
 
-    MAX_FRAME_NUM = 250
-    FRAMES_INTERVAL = 25
 
     input_dir = args['input_dir']
     n_samples = count_files(input_dir)
-    L = int(MAX_FRAME_NUM / FRAMES_INTERVAL) - 1
+    L = 10
 
     features = np.zeros(shape=(n_samples, 120, 160, 2*L))
     
@@ -52,7 +50,7 @@ if __name__ == '__main__':
             file_path = os.path.join(input_dir, subdir, file_name)
 
             video = pims.PyAVReaderIndexed(file_path)
-            selected_frames = video[:MAX_FRAME_NUM:FRAMES_INTERVAL]
+            selected_frames = video[:L+1]
 
             flows = []
             for prev_frame, next_frame in zip(selected_frames, selected_frames[1:]):

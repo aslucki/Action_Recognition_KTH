@@ -56,3 +56,14 @@ train_basic_lstm_disarranged:
 			--input_file data/processed/resnet_features.h5 \
 			--disarrange
 
+train_conv_optical_flow:
+	python3 src/train_conv.py \
+			--input_file data/processed/optical_flow_features.h5 \
+			--ds_name optical_flow
+
+test_zisserman_approach:
+	python3 src/zisserman_approach.py \
+			--resnet_features_file data/processed/resnet_features.h5 \
+			--optical_flow_features_file data/processed/optical_flow_features.h5
+
+
